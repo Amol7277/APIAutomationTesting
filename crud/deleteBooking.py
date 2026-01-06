@@ -15,7 +15,7 @@ tokenResponse = requests.post(url=TokenURL, headers=headers, json= payload)
 token = tokenResponse.json()["token"]
 
 
-deleteURL = "https://restful-booker.herokuapp.com/booking/2513"
+deleteURL = "https://restful-booker.herokuapp.com/booking/2021"
 
 deleteheaders= {
     "Cookie": f"token={token}"
@@ -26,6 +26,6 @@ print(deleteResponse.status_code)
 assert deleteResponse.status_code == 201
 
 
-GetBookingURL = "https://restful-booker.herokuapp.com/booking/2513"
+GetBookingURL = "https://restful-booker.herokuapp.com/booking/2021"
 getResponse = requests.get(url=GetBookingURL, headers=headers)
 assert getResponse.status_code == 404

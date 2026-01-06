@@ -3,8 +3,8 @@ import requests
 Tokenbaseurl = "https://restful-booker.herokuapp.com/auth"
 
 headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json"
+    "Content-Type": "application/json"
+    # "Accept": "application/json"
 }
 
 payload = {
@@ -15,10 +15,11 @@ payload = {
 responseToken = requests.post(url=Tokenbaseurl, headers=headers, json=payload)
 print(responseToken.text)
 print(responseToken.status_code)
+responseToken.json()
 token = responseToken.json()["token"]
-print(token)
+# print(token)
 
-baseurl = "https://restful-booker.herokuapp.com/booking/2171"
+baseurl = "https://restful-booker.herokuapp.com/booking/2021"
 
 headers = {
     "Content-Type": "application/json",
@@ -26,10 +27,10 @@ headers = {
     "Cookie": f"token={token}"
 }
 
-auth = {
-    "username": "admin",
-    "password": "password123"
-}
+# auth = {
+#     "username": "admin",
+#     "password": "password123"
+# }
 
 payload = {
     "firstname": "Amol",
