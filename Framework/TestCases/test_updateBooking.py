@@ -5,23 +5,15 @@ from Framework.URLs.RequestURL import requestsURLs
 from Framework.Utils.headers import Utils
 from Framework.Payload_Manager.payloads import createTokenPayload, updateBookingPayload
 
+def test_updateBooking(create_token):
 
-def test_CreateToken():
-    response = api_contant().getToken(
-        url= requestsURLs().createToken(),
-        headers= Utils().headers_CreateToken(),
-        payload= createTokenPayload
-    )
-    print(response.status_code)
-    assert response.status_code == 200
-    # return response.json()["token"]
-    global token
-    token = response.json()["token"]
-
-def test_updateBooking():
     updateResponse = api_contant().updateBooking(
-        url=requestsURLs().updateBooking(),
-        headers=Utils().headers_updateBooking(token),
+        url=requestsURLs().updateBooking(bookingID=2120),
+        headers=Utils().headers_updateBooking(create_token),
         payload=updateBookingPayload
     )
+    print(updateResponse.url)
+    print(updateResponse.text)
+    # print(updateResponse.headers)
     assert  updateResponse.status_code == 200
+

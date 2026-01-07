@@ -15,16 +15,16 @@ class requestsURLs():
         getbookingIDsURL = "https://restful-booker.herokuapp.com/booking"
         return getbookingIDsURL
 
-    def getSingleBooking(self, id):
-        getSingleBookingURL = "https://restful-booker.herokuapp.com/booking/"+str(id)
+    def getSingleBooking(self, bookingID):
+        getSingleBookingURL = "https://restful-booker.herokuapp.com/booking/"+str(bookingID)
         return getSingleBookingURL
 
     def createBooking(self):
         createBookingURL = "https://restful-booker.herokuapp.com/booking"
         return createBookingURL
 
-    def updateBooking(self):
-        updateBookingURL = "https://restful-booker.herokuapp.com/booking/2120" #+ str(bookingID)
+    def updateBooking(self,bookingID):
+        updateBookingURL = "https://restful-booker.herokuapp.com/booking/" + str(bookingID)
         return updateBookingURL
 
     def deleteBooking(self, bookingID):
