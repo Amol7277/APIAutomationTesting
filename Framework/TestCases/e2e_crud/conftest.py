@@ -3,7 +3,7 @@ import requests
 from Framework.API_Constant.api_contant import api_contant
 from Framework.URLs.RequestURL import requestsURLs
 from Framework.Utils.headers import Utils
-from Framework.Payload_Manager.payloads import createTokenPayload
+from Framework.Payload_Manager.payloads import *
 
 BASE_URL = "https://restful-booker.herokuapp.com"
 
@@ -23,6 +23,7 @@ BASE_URL = "https://restful-booker.herokuapp.com"
 #
 #     return response.json()["token"]
 
+# @pytest.fixture(scope="class")
 @pytest.fixture(scope="session")
 def create_token():
     create_token_response = api_contant().getToken(
@@ -30,6 +31,20 @@ def create_token():
         headers=Utils().headers_CreateToken(),
         payload=createTokenPayload
     )
+    print("Created Token = ",create_token_response.json()["token"])
     assert create_token_response.status_code == 200
 
     return create_token_response.json()["token"]
+
+@pytest.fixture(scope="session")
+def test_createBooking():
+    createBookingResponse = api_contant().createBooking(
+        url=requestsURLs().createBooking(),
+        headers=Utils().headers_createBooking(),
+        payload=createBookingPayload
+    )
+    print("Created Booking StatusCode ", createBookingResponse.status_code)
+    print("Created BookingDetails is ", createBookingResponse.text)
+    bookingID = createBookingResponse.json()["bookingid"]
+    assert createBookingResponse.status_code == 200
+    return bookingID

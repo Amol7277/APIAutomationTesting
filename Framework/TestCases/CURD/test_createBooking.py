@@ -15,6 +15,7 @@ def test_createBooking():
 
     print(createBooking_Response.status_code)
     booking_id = createBooking_Response.json()["bookingid"]
+    print("createdbookingID =",booking_id)
     return booking_id
     assert createBooking_Response.status_code == 200
 
@@ -22,6 +23,5 @@ def test_createBooking():
         url=requestsURLs().getSingleBooking(bookingID=booking_id),
         headers=Utils().headers_getSingleBookingIDs()
     )
-
     print(get_response.status_code)
     assert get_response.status_code == 200
